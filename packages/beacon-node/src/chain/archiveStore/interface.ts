@@ -74,6 +74,25 @@ export interface IArchiveStore {
   persistToDisk(): Promise<void>;
 }
 
+export enum HistoricalStateStorageType {
+  /**
+   * Used to refer to full archive in `ArchiveMode.Frequency`
+   */
+  Full = "full",
+  /**
+   * Refer to the snapshot for differential backup
+   */
+  Snapshot = "snapshot",
+  /**
+   * Refer to the binary diff for the differential backup
+   */
+  Diff = "diff",
+  /**
+   * Refer to the slots with skipped backups during differential backup
+   */
+  BlockReplay = "blockReplay",
+}
+
 export interface IStateDiffCodec {
   /**
    * Compute the binary difference between `base` and `changed` state
